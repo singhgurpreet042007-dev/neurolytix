@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 4%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 18% 8%;
+    --card-foreground: 210 20% 95%;
+    --card-elevated: 220 16% 11%;
+
+    --popover: 220 18% 8%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 210 100% 56%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 260 60% 58%;
+    --secondary-foreground: 210 20% 95%;
+
+    --cyan: 185 80% 55%;
+    --cyan-foreground: 220 20% 4%;
+
+    --muted: 220 14% 14%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 220 14% 14%;
+    --accent-foreground: 210 20% 95%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 220 13% 16%;
+    --input: 220 13% 16%;
+    --ring: 210 100% 56%;
+
+    --radius: 0.75rem;
+
+    --glow-primary: 0 0 20px hsl(210 100% 56% / 0.3);
+    --glow-secondary: 0 0 20px hsl(260 60% 58% / 0.3);
+    --glow-cyan: 0 0 20px hsl(185 80% 55% / 0.3);
+
+    --gradient-primary: linear-gradient(135deg, hsl(210 100% 56%), hsl(260 60% 58%));
+    --gradient-cyan: linear-gradient(135deg, hsl(185 80% 55%), hsl(210 100% 56%));
+    --gradient-surface: linear-gradient(180deg, hsl(220 18% 10%), hsl(220 18% 6%));
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-2xl;
+  }
+
+  .glass-card-elevated {
+    background: hsl(var(--card-elevated) / 0.7);
+    @apply backdrop-blur-xl border border-border/40 rounded-2xl;
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-cyan-text {
+    background: var(--gradient-cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .glow-secondary {
+    box-shadow: var(--glow-secondary);
+  }
+
+  .glow-cyan {
+    box-shadow: var(--glow-cyan);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 2px;
+}
